@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'building the application'
-                echo "Building version ${NEW_VERSION}"
+                
             }
 
             
