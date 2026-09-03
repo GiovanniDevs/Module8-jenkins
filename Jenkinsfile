@@ -13,12 +13,9 @@ pipeline {
             steps {
                 script{
                     gv = load "script.groovy"
-                }
-                
+                }     
                 
             }
-
-            
         }
         stage('Build') {
             steps {
@@ -27,7 +24,6 @@ pipeline {
                 }
                 
             }
-
             
         }
         stage('test') {
@@ -36,16 +32,23 @@ pipeline {
                     params.booleanParam
                 }
             }
-            script{
+            steps {
+                script{
                     gv.testApp()
                 }
+
+            }
             
 
         }
         stage('deploy') {
-            script{
+            steps {
+                script{
                     gv.deployApp()
                 }
+
+            }
+            
             
         }
     }
