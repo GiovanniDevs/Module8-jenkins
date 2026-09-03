@@ -1,3 +1,4 @@
+def gv
 pipeline {
     agent any
     
@@ -29,7 +30,7 @@ pipeline {
         stage('test') {
             when {
                 expression {
-                    params.booleanParam
+                    params.executeTests
                 }
             }
             steps {
@@ -52,7 +53,7 @@ pipeline {
             steps {
                 script{
                     gv.deployApp()
-                    echo "Deploying to ${ENV}
+                    echo "Deploying to ${ENV}"
                 }
 
             }
