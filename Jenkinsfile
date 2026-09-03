@@ -48,12 +48,14 @@ pipeline {
                 ok "Done"
                 parameters {
                     choice(name: 'ENV', choices: ['dev', 'staging', 'production'], description:'')
+                    choice(name: 'ENVTWO', choices: ['dev', 'staging', 'production'], description:'')
                 }
             }
             steps {
                 script{
                     gv.deployApp()
                     echo "Deploying to ${ENV}"
+                    echo "Deploying to ${ENVTWO}"
                 }
 
             }
