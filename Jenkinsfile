@@ -1,4 +1,3 @@
-def gv
 pipeline {
     agent any
     tools {
@@ -16,12 +15,12 @@ pipeline {
                 
             }
         }
-        stage('build jimage') {
+        stage('build image') {
             steps {
                 script{
                     echo 'building the docker image...'
-                    withCredentials([usernamePassword(credentialsID: 'dockerhub-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]){
-                        sh 'docker build -t giovannidevs/demo-app:jma-1.0 .'
+                    sh 'docker build -t giovannidevs/demo-app:jma-1.0 .'
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]){
                         sh 'echo $PASS | docker login -u $USER --password-stdin'
                         sh 'docker push giovannidevs/demo-app:jma-1.0'
 
@@ -31,7 +30,7 @@ pipeline {
                 
             }
         }
-        stage('Build') {
+        stage('Deploy') {
             steps {
                 script{
                     echo "deploying the application..."
