@@ -7,6 +7,10 @@ def gv
 
 pipeline {
     agent any
+    tools {
+        maven 'maven-version-3.9'   // must match Manage Jenkins → Tools exactly
+    }
+    
 
     stages {
         stage('init') {
