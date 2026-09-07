@@ -1,40 +1,42 @@
+#!/user/bin/env groovy
 
+// library name from jenkins system settings
+@Library('Jenkins-SL')
+
+def gv
 
 pipeline {
     agent any
 
     stages {
-        stage('test') {
+        stage('init') {
             steps {
                 script {
-                    echo 'Testing the application...'
-                    echo "executing pipeline for branch $BRANCH_NAME"
+                    gv = load "script.groovy"
 
                 }
             }
         }
-        stage('build') {
-            when {
-                expression {
-                    BRANCH_NAME == "master"
-                }
-            }
+        stage('build jar') {
             steps {
                 script {
-                    echo 'Building the application...'
+                    buildJar()
+
+                }
+            }
+        }
+        stage('build image') {
+            steps {
+                script {
+                    buildImage()
 
                 }
             }
         }
         stage('Deploy') {
-            when {
-                expression {
-                    BRANCH_NAME == "master"
-                }
-            }
             steps {
                 script {
-                    'Deploying application...'
+                    gv.deployApp()
                 }
                 
             }
