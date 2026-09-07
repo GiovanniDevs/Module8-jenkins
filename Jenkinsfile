@@ -24,7 +24,7 @@ pipeline {
         stage('build jar') {
             steps {
                 script {
-                    buildJar()
+                    buildJar 'giovannidevs/demo-app:jma-1.0'
 
                 }
             }
