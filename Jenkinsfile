@@ -24,7 +24,7 @@ pipeline {
         stage('build jar') {
             steps {
                 script {
-                    buildJar 'giovannidevs/demo-app:jma-1.0'
+                    buildJar()
 
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
         stage('build image') {
             steps {
                 script {
-                    buildImage()
+                    buildImage 'giovannidevs/demo-app:jma-1.0'
 
                 }
             }
