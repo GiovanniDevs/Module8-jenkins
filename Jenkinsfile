@@ -8,7 +8,7 @@ def gv
 pipeline {
     agent any
     tools {
-        maven 'maven-version-3.9'   // must match Manage Jenkins → Tools exactly
+        maven 'maven-3.9'   // must match Manage Jenkins → Tools exactly
     }
     
 
