@@ -10,14 +10,12 @@ pipeline {
     tools {
         maven 'maven-3.9'   // must match Manage Jenkins → Tools exactly
     }
-    
 
     stages {
         stage('init') {
             steps {
                 script {
-                    gv = load "script.groovy"
-
+                    gv = load 'script.groovy'
                 }
             }
         }
@@ -25,15 +23,15 @@ pipeline {
             steps {
                 script {
                     buildJar()
-
                 }
             }
         }
-        stage('build image') {
+        stage('build and push image') {
             steps {
                 script {
-                    buildImage 'giovannidevs/demo-app:jma-1.0'
-
+                    buildImage 'giovannidevs/demo-app:jma-2.0'
+                    dockerLogin()
+                    dockerPush 'giovannidevs/demo-app:jma-2.0'
                 }
             }
         }
@@ -42,10 +40,7 @@ pipeline {
                 script {
                     gv.deployApp()
                 }
-                
             }
-            
         }
     }
-        
 }
