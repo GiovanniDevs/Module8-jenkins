@@ -8,6 +8,7 @@ pipeline {
             steps {
                 script {
                     echo 'Testing the application...'
+                    echo 'Counting to 3, 1, 2 3...'
                     
 
                 }
