@@ -8,6 +8,7 @@ pipeline {
             steps {
                 script {
                     echo 'Testing the application...'
+                    echo 'Testing the application...multibranch trigger '
                     echo "Executing pipeline for branch $BRANCH_NAME"
 
                 }
