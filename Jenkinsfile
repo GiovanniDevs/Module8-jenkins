@@ -8,17 +8,13 @@ pipeline {
             steps {
                 script {
                     echo 'Testing the application...'
-                    echo "Executing pipeline for branch $BRANCH_NAME"
+                    
 
                 }
             }
         }
         stage('build') {
-            when {
-                expression {
-                    BRANCH_NAME == "master"
-                }
-            }
+            
             steps {
                 script {
                     echo 'Building the application...'
@@ -26,12 +22,17 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
-            when {
-                expression {
-                    BRANCH_NAME == "master"
+        stage('build-image') {
+            
+            steps {
+                script {
+                    echo 'Building the image...'
+
                 }
             }
+        }
+        stage('Deploy') {
+            
             steps {
                 script {
                     'Deploying application...'
