@@ -1,6 +1,9 @@
 
 pipeline {
     agent any
+    tools {
+        maven 'maven-3.9'   // must match Manage Jenkins → Tools exactly
+    }
 
     stages {
         stage('test') {
