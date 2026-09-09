@@ -1,5 +1,4 @@
 
-
 pipeline {
     agent any
 
@@ -10,38 +9,32 @@ pipeline {
                     echo 'Testing the application...'
                     echo 'Testing the application...multibranch trigger '
                     echo "Executing pipeline for branch $BRANCH_NAME"
-
                 }
             }
         }
         stage('build') {
             when {
                 expression {
-                    BRANCH_NAME == "master"
+                    BRANCH_NAME == 'main'
                 }
             }
             steps {
                 script {
                     echo 'Building the application...'
-
                 }
             }
         }
         stage('Deploy') {
             when {
                 expression {
-                    BRANCH_NAME == "master"
+                    BRANCH_NAME == 'main'
                 }
             }
             steps {
                 script {
                     'Deploying application...'
                 }
-                
             }
-            
         }
     }
-        
 }
-
